@@ -10,6 +10,7 @@ This repo is based on many image capture models like
  * [Bottom-Up and Top-Down Attention for Image Captioning and Visual QuestionAnswering](https://arxiv.org/pdf/1707.07998.pdf),
  * [Meshed-Memory Transformer for Image Captioning](https://arxiv.org/pdf/1912.08226.pdf) 
 and so on.
+
 I develpoed the simplest and better performance model.
 
 
@@ -28,7 +29,7 @@ download images here : ['train_coco_images2014'](http://images.cocodataset.org/z
 
 * download caption annotation here : (http://images.cocodataset.org/annotations/annotations_trainval2014.zip)
 
-* In order to get the many training data here, I followed the karpathy split.
+* In order to get many training data, I followed the karpathy split.
 I used 118287 training data and 5000 valid data. Karpathy split data is available on the coco dataset site.
 
 
