@@ -127,7 +127,7 @@ I tried to do a training process that creates arbitrary text and uses image to r
 where random labels are selected as random from five captions. This not only prevents overfitting but also improves performance in evaluations such as bleu and cider.
 
 
-*Here, I saw the performance improvement using only the fourth method. If all of the first, second, and third methods are used, performance improvement of 5-10 is expected based on bleu4.
+* Here, I saw the performance improvement using only the fourth method. If all of the first, second, and third methods are used, performance improvement of 5-10 is expected based on bleu4.
 
 
 
