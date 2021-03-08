@@ -96,11 +96,11 @@ Therefore, I made various attempts to obtain a good model with less gpu.
 
 1. tagging model
 * The input of the image capture model: a word anchor as well as an image. 
-We want to conduct another training on tag using various models such as cnn, lstm, etc.
+I want to conduct another training on tag using various models such as cnn, lstm, etc.
 
 
 * example )
-model_input : <[dog] [bark] >, <I M A G E>, <INPUT_IDS>
+model_input : <[dog] [bark] >, <IMAGE>, <INPUT_IDS>
 (where <[dog] [bark]> corresponds to tag.)
 
 
