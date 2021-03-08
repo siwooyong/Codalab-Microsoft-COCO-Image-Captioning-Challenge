@@ -74,11 +74,40 @@ I used resnet101 as an encoder. At the beginning of training, we did not include
 
 
 
-## decoder : gru_cell
+## decoder : gpt2
 * The decoder structure is the simplest structure, but I used one trick. The image input was separated into several tokens and put into the gpt2 hidden layer. This means that 10 image tokens, along with 20 word tokens (N, 30, 768) are input to gpt2.
 
 * Of course, there is no label for image token, so the loss function contains the latter 20 (N, 20, 768) of the (N, 30, 768).
 
+
+
+
+
+/
+
+
+
+
+
+
+## research 
+To achieve good performance, modern image capture models use image detection by default. However, this makes it difficult for users with poor gpu environment to implement.
+Therefore, I made various attempts to obtain a good model with less gpu.
+
+1. tagging model
+* The input of the image capture model: a word anchor as well as an image. 
+We want to conduct another training on tag using various models such as cnn, lstm, etc.
+
+
+* example )
+model_input : <[dog] [bark] >, <I M A G E>, <INPUT_IDS>
+(where <[dog] [bark]> corresponds to tag.)
+
+
+
+2. another attempts
+I wanted to see the image caption as text -> text, not image -> text
+We tried to do a training process that creates arbitrary text and uses image to refine it to the correct answer and is currently in progress.
 
 
 
