@@ -152,5 +152,14 @@ teacher focing with out beam_search(beam_search = 1)
 
 
 
+/
 
+
+
+
+## references
+I got help from [sgrvinod-a-PyTorch-Tutorial-to-Image-Captioning](https://github.com/sgrvinod/a-PyTorch-Tutorial-to-Image-Captioning).
+
+
+## Thank you for reading
 
