@@ -117,3 +117,40 @@ class decoder(nn.Module):
 
 gpt_decoder = decoder(features_dim = 2048,
                       embed_dim = 768)
+
+
+
+
+
+
+
+
+# CapBenchTrain
+
+class CapBenchTrain(nn.Module):
+  def __init__(self, model, fine_tune = False):
+    super(CapBenchTrain, self).__init__()
+    self.model = model
+    self.fine_tune = fine_tune
+    if self.fine_tune == False:
+      self.model.__cnn__.requires_grad_ = False
+    else:
+      self.model.__cnn__.requires_grad_ = True
+
+    self.loss_fn = nn.CrossEntropyLoss()
+
+  def forward(self, images, input_ids, target):
+    preds_out = self.model(images, input_ids)
+    loss = self.loss_fn(preds_out.reshape(-1, hyper_parameters['vocab_dim']), target.reshape(-1))
+
+    return loss, preds_out
+
+model = gpt_decoder
+state = 'initial'
+
+if state == 'initial':
+  print('not trained')
+  net = CapBenchTrain(model).to(device)
+else:
+  print('trained')
+  net = CapBenchTrain(caption_net, True).to(device)
