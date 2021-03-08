@@ -140,6 +140,7 @@ where random labels are selected as random from five captions. This not only pre
 
 ## evaluation
 |metric|score|
+|---|---|
 |BLEU1|0.7016|
 |BLEU2|0.5367|
 |BLEU3|0.4013|
