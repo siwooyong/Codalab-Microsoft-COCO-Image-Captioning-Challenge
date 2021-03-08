@@ -48,7 +48,38 @@ I selected frequently used words from the coco annotation data and proceeded wit
 
 
 
-** After a number of later studies, pretrained gpt2 embedding layer performed best.
+** After a number of later studies, pretrained gpt2 embedding layer performed best.(check model.py)
+
+
+
+
+
+/
+
+
+
+
+
+## encoder : resnet101
+I used resnet101 as an encoder. At the beginning of training, we did not include encoders (resnet) in trainable params, but later re-training by including encoders parameters for the trained capture models showed improved performance.(fine-tuned)
+
+
+
+
+
+
+/
+
+
+
+
+
+## decoder : gru_cell
+* The decoder structure is the simplest structure, but I used one trick. The image input was separated into several tokens and put into the gpt2 hidden layer. This means that 10 image tokens, along with 20 word tokens (N, 30, 768) are input to gpt2.
+
+* Of course, there is no label for image token, so the loss function contains the latter 20 (N, 20, 768) of the (N, 30, 768).
+
+
 
 
 
