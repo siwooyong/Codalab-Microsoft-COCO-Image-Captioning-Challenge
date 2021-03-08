@@ -106,8 +106,28 @@ model_input : '[dog] [bark]', 'INPUT_IDS', 'IMAGE'
 
 
 2. another attempts
-I wanted to see the image caption as text -> text, not image -> text
-We tried to do a training process that creates arbitrary text and uses image to refine it to the correct answer and is currently in progress.
+I wanted to see the image caption task as text -> text, not image -> text
+I tried to do a training process that creates arbitrary text and uses image to refine it to the correct answer and is currently in progress.
+
+
+
+
+
+/
+
+
+
+
+
+## As a way to increase performance
+* First, 'beam search'
+* Second, 'CIDEr optimization'
+* Third, 'Ensemble'
+* Fourth, 'using random labels'
+where random labels are selected as random from five captions. This not only prevents overfitting but also improves performance in evaluations such as bleu and cider.
+
+
+*Here, I saw the performance improvement using only the fourth method. If all of the first, second, and third methods are used, performance improvement of 5-10 is expected based on bleu4.
 
 
 
