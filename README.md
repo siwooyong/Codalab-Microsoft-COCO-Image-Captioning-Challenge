@@ -35,6 +35,24 @@ I used 118287 training data and 5000 valid data. Karpathy split data is availabl
 
 
 
+/
+
+
+
+
+
+## vocab
+As a vocabulary for embeddedding. I tried using gpt2 (50,257 tokens) and Bert (30,232 tokens), but this required a relatively large amount of computation and was slow at learning, so I created vocab_dict separately.(See vocab.py for this.)
+
+I selected frequently used words from the coco annotation data and proceeded with encoding.(I selected 15,000 tokens.)
+
+
+
+** After a number of later studies, pretrained gpt2 embedding layer performed best.
+
+
+
+
 
 
 
