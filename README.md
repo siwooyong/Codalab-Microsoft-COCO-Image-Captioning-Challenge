@@ -100,7 +100,7 @@ I want to conduct another training on tag using various models such as cnn, lstm
 
 
 * example )
-model_input : <[dog] [bark] >, <img>, <INPUT_IDS>
+model_input : <[dog] [bark] >, <INPUT_IDS>, [image]
 (where <[dog] [bark]> corresponds to tag.)
 
 
