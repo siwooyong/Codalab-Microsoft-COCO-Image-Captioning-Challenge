@@ -11,3 +11,35 @@ This repo is based on many image capture models like
  * [Meshed-Memory Transformer for Image Captioning](https://arxiv.org/pdf/1912.08226.pdf) 
 and so on.
 I develpoed the simplest and better performance model.
+
+
+
+
+/
+
+
+
+
+## coco_dataset: data prepare(karpathy split)
+* The coco data consists of 80k train images, 40k valid images, and 40k test images. Here, I did not use test data, but trained on 80k images, and only did validation on 40k images.
+
+
+download images here : ['train_coco_images2014'](http://images.cocodataset.org/zips/train2014.zip), ['valid_coco_images2014'](http://images.cocodataset.org/zips/val2014.zip), ['test_coco_images2014'](http://images.cocodataset.org/zips/test2014.zip)
+
+* download caption annotation here : (http://images.cocodataset.org/annotations/annotations_trainval2014.zip)
+
+* In order to get the many training data here, I followed the karpathy split.
+I used 118287 training data and 5000 valid data. Karpathy split data is available on the coco dataset site.
+
+
+
+
+
+
+
+
+
+
+
+
+
