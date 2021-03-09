@@ -143,13 +143,13 @@ where random labels are selected as random from five captions. This not only pre
 teacher focing with out beam_search(beam_search = 1)
 |metric|score|
 |---|---|
-|BLEU1|0.7016|
-|BLEU2|0.5367|
-|BLEU3|0.4013|
-|BLEU4|0.3036|
-|CIDEr|0.7783|
-|METEOR|0.2613|
-|ROUGE_L|0.5105|
+|BLEU1|0.7070|
+|BLEU2|0.5437|
+|BLEU3|0.4081|
+|BLEU4|0.3053|
+|CIDEr|0.7905|
+|METEOR|0.2637|
+|ROUGE_L|0.5136|
 
 
 
