@@ -140,16 +140,16 @@ where random labels are selected as random from five captions. This not only pre
 
 
 ## evaluation
-teacher focing with out beam_search(beam_search = 1)
+with beam_search(beam_search = 2)
 |metric|score|
 |---|---|
-|BLEU1|0.7104|
-|BLEU2|0.5465|
-|BLEU3|0.4195|
-|BLEU4|0.3192|
-|CIDEr|0.8755|
-|METEOR|0.2759|
-|ROUGE_L|0.5271|
+|BLEU1|0.7179|
+|BLEU2|0.5567|
+|BLEU3|0.4236|
+|BLEU4|0.3237|
+|CIDEr|0.8967|
+|METEOR|0.2774|
+|ROUGE_L|0.5317|
 
 
 
