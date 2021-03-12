@@ -244,3 +244,97 @@ class decoder(nn.Module):
 
 gpt_decoder = decoder(features_dim = 2048,
                       embed_dim = 768)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# CapBenchTrain
+
+from nlgeval.pycocoevalcap.cider.cider import Cider
+
+class CapBenchTrain(nn.Module):
+  def __init__(self, model, fine_tune = False):
+    super(CapBenchTrain, self).__init__()
+    self.model = model
+    self.fine_tune = fine_tune
+    if self.fine_tune == False:
+      self.model.__cnn__.requires_grad_ = False
+    else:
+      self.model.__cnn__.requires_grad_ = True
+
+    self.loss_fn = nn.CrossEntropyLoss()
+  
+  def __generate__(self, images, all_caps, beam_size):
+    '''
+     
+    generate captions using batch beam search
+
+    scores.shape : (N, 5)
+    tokens.shape : (N, 5, max_len)
+
+    '''
+    batch = images.shape[0]
+
+    references = list()
+    hypothesis = list()
+
+    scores, _, batch_tokens, _ = self.model.__beam_search__(images = images, 
+                                                             beam_size = 5, 
+                                                             seq_len = 25)
+    
+    for i in range(batch):
+      reference = all_caps[i]
+      tokens = batch_tokens[i]
+
+      for k in range(beam_size):
+         sample = tokens[k]
+         indices = torch.where((sample < 50257) & (sample != 13) & (sample != 0))[0]
+         decoded = hyper_parameters['tokenizer'].decode(sample[indices].long().tolist()) + '.'
+
+         hypothesis.extend([decoded])   
+         references.extend([reference])
+    
+    return references, hypothesis, scores
+
+  def forward(self, images, input_ids, target, all_caps, beam_size, self_crit_seq_train = None):
+    if self_crit_seq_train is None:
+      preds_out = self.model(images, input_ids)
+      loss = self.loss_fn(preds_out.reshape(-1, hyper_parameters['vocab_dim']), target.reshape(-1))
+      return loss, preds_out
+
+    else: # self_crit_seq_train
+      ref_list, hyp_list, scores = self.__generate__(images, all_caps, beam_size)
+
+      refs = {idx: lines for (idx, lines) in enumerate(ref_list)}
+      hyps = {idx: [lines] for (idx, lines) in enumerate(hyp_list)}
+      _, reward = Cider().compute_score(refs, hyps) # (N, beam_size)
+
+      reward = torch.from_numpy(reward).to(device).view(scores.shape)
+      reward_baseline = torch.mean(reward, dim = 1, keepdim = True)
+
+      loss = - scores * (reward - reward_baseline)
+      loss = loss.mean()
+
+      return loss, hyp_list[::beam_size]
+
+
+model = gpt_decoder
+state = 'initial'
+
+if state == 'initial':
+  print('not trained')
+  net = CapBenchTrain(model).to(device)
+else:
+  print('trained')
+  net = CapBenchTrain(caption_net, True).to(device)
