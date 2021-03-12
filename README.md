@@ -9,6 +9,7 @@ This repo is based on many image capture models like
  * [Show, Attend and Tell: Neural Image Caption Generation with Visual Attention](https://arxiv.org/pdf/1502.03044.pdf), 
  * [Bottom-Up and Top-Down Attention for Image Captioning and Visual QuestionAnswering](https://arxiv.org/pdf/1707.07998.pdf),
  * [Meshed-Memory Transformer for Image Captioning](https://arxiv.org/pdf/1912.08226.pdf) 
+ * [Self-critical Sequence Training for Image Captioning](https://arxiv.org/pdf/1612.00563.pdf)
 and so on.
 
 I develpoed the simplest and better performance model.
