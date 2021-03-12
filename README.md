@@ -151,6 +151,17 @@ with beam_search(beam_search = 2)
 |METEOR|0.2774|
 |ROUGE_L|0.5317|
 
+with beam_search(beam_search = 5) and self_critical_sequence_training
+|metric|score|
+|---|---|
+|BLEU1|0.7610|
+|BLEU2|0.5991|
+|BLEU3|0.4503|
+|BLEU4|0.3332|
+|CIDEr|0.9729|
+|METEOR|0.2693|
+|ROUGE_L|0.5397|
+
 
 
 /
