@@ -155,10 +155,10 @@ with beam_search(beam_search = 2)
 with beam_search(beam_search = 5) and self_critical_sequence_training
 |metric|score|
 |---|---|
-|BLEU1|0.7622|
-|BLEU2|0.6011|
-|BLEU3|0.4559|
-|BLEU4|0.3353|
+|BLEU1|0.7660|
+|BLEU2|0.6078|
+|BLEU3|0.4650|
+|BLEU4|0.3459|
 |CIDEr|0.9757|
 |METEOR|0.2699|
 |ROUGE_L|0.5407|
