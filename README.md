@@ -159,9 +159,9 @@ with beam_search(beam_search = 5) and self_critical_sequence_training
 |BLEU2|0.6078|
 |BLEU3|0.4650|
 |BLEU4|0.3459|
-|CIDEr|0.9757|
-|METEOR|0.2699|
-|ROUGE_L|0.5407|
+|CIDEr|0.9993
+|METEOR|0.2735
+|ROUGE_L|0.5437|
 
 
 
