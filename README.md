@@ -168,6 +168,17 @@ with beam_search(beam_search = 5) and self_critical_sequence_training
 /
 
 
+special implementation
+|metric|score|
+|---|---|
+|BLEU1|0.8040|
+|BLEU2|0.6494|
+|BLEU3|0.5024|
+|BLEU4|0.3835|
+|CIDEr|1.264|
+|METEOR|0.2743|
+|ROUGE_L|0.5775|
+
 
 
 ## references
