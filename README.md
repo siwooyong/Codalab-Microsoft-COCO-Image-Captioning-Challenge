@@ -164,7 +164,7 @@ with beam_search(beam_search = 5) and self_critical_sequence_training and Ensemb
 
 
 ## evaluation for karpathy test: 
-# ***3rdPlace at COCO Image Caption Challenge in codaLab.***
+# ***3rdPlace at COCO Image Caption Challenge***
 
 Originally, the goal of this project was to develop image captioning model with high performance at low cost. For additional research, I also used image detection features to produce better results. 
 
