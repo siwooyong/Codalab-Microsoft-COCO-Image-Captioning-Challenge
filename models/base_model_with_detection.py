@@ -205,3 +205,155 @@ class decoder(nn.Module):
 
 gpt_decoder = decoder(features_dim = 2054,
                       embed_dim = 768)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# cross_entropy_train
+
+def convert_models_to_fp32(model): 
+  for p in model.parameters(): 
+    p.data = p.data.float() 
+
+class CapBenchTrain(nn.Module):
+  def __init__(self, model, fine_tune = False):
+    super(CapBenchTrain, self).__init__()
+    self.model = model
+    self.fine_tune = fine_tune
+    if self.fine_tune == False:
+      self.model.__cnn__.requires_grad_ = False
+    else:
+      self.model.__cnn__.requires_grad_ = True
+
+    self.loss_fn = nn.CrossEntropyLoss()
+
+  def forward(self, images, features, input_ids, target, tag_ids, mask = None):
+    preds_out = self.model(images, features, input_ids, tag_ids) # (N, seq_len, vocab_dim)
+    loss = self.loss_fn(preds_out.reshape(-1, hyper_parameters['vocab_dim']), target.reshape(-1))
+    
+    return loss, preds_out
+
+model = gpt_decoder
+state = 'initial'
+
+if state == 'initial':
+  print('not trained')
+  net = CapBenchTrain(model).to(device)
+else:
+  print('trained')
+  net = CapBenchTrain(caption_net, False).to(device)
+
+convert_models_to_fp32(net.model.__clip__)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# scst train
+
+from nlgeval.pycocoevalcap.cider.cider import Cider
+
+class CapBenchTrain(nn.Module):
+  def __init__(self, model, fine_tune = False):
+    super(CapBenchTrain, self).__init__()
+    self.model = model
+    self.fine_tune = fine_tune
+    if self.fine_tune == False:
+      self.model.__cnn__.requires_grad_ = False
+    else:
+      self.model.__cnn__.requires_grad_ = True
+
+    self.loss_fn = nn.CrossEntropyLoss()
+  
+  def __generate__(self, images, features, tag_ids, all_caps, beam_size):
+    '''
+     
+    generate captions using batch beam search
+
+    scores.shape : (N, beam_size)
+    tokens.shape : (N, beam_size, max_len)
+
+    '''
+    batch = images.shape[0]
+
+    references = list()
+    hypothesis = list()
+
+    scores, _, batch_tokens, _ = self.model.__beam_search__(images = images, 
+                                                            features = features,
+                                                            tag_ids = tag_ids,
+                                                            beam_size = beam_size, 
+                                                            seq_len = 25)
+    
+    for i in range(batch):
+      reference = all_caps[i]
+      tokens = batch_tokens[i]
+
+      for k in range(beam_size):
+         sample = tokens[k]
+         if hyper_parameters['tokenizer'] == gpt2_tokenizer:
+           indices = torch.where((sample < 50257) & (sample != 13) & (sample != 0))[0]
+           decoded = hyper_parameters['tokenizer'].decode(sample[indices].long().tolist())
+         else:
+           indices = torch.where((sample > 3))[0]
+           decoded = gpt2_tokenizer.decode(gpt2_tokenizer.encode(' '.join([hyper_parameters['tokenizer'].decode(token) for token in sample[indices].long().tolist()])))
+          
+         hypothesis.extend([decoded])   
+         references.extend([reference])
+    
+    return references, hypothesis, scores
+
+  def forward(self, images, features, tag_ids, input_ids, target, all_caps, beam_size, self_crit_seq_train = None):
+    if self_crit_seq_train is None:
+      preds_out = self.model(images, features, input_ids, tag_ids)
+      loss = self.loss_fn(preds_out.reshape(-1, hyper_parameters['vocab_dim']), target.reshape(-1))
+      return loss, preds_out
+
+    else: # self_crit_seq_train
+      ref_list, hyp_list, scores = self.__generate__(images, features, tag_ids, all_caps, beam_size)
+
+      refs = {idx: lines for (idx, lines) in enumerate(ref_list)}
+      hyps = {idx: [lines] for (idx, lines) in enumerate(hyp_list)}
+      _, reward = Cider().compute_score(refs, hyps) # (N, beam_size)
+
+      reward = torch.from_numpy(reward).to(device).view(scores.shape)
+      reward_baseline = torch.mean(reward, dim = 1, keepdim = True)
+
+      loss = - scores * (reward - reward_baseline)
+      loss = loss.mean()
+
+      return loss, hyp_list[::beam_size]
+
+
+model = gpt_decoder
+state = 'not initial'
+
+if state == 'not initial':
+  print('not trained')
+  net = CapBenchTrain(model).to(device)
+else:
+  print('trained')
+  net = CapBenchTrain(caption_net, False).to(device)
