@@ -140,44 +140,18 @@ where random labels are selected as random from five captions. This not only pre
 
 
 
-## evaluation
-with beam_search(beam_search = 2)
+## evaluation for karpathy test: base_model_with_detection model
+with beam_search(beam_search = 5) and self_critical_sequence_training and Ensemble(3 models)
 |metric|score|
 |---|---|
-|BLEU1|0.7179|
-|BLEU2|0.5567|
-|BLEU3|0.4236|
-|BLEU4|0.3237|
-|CIDEr|0.8967|
-|METEOR|0.2774|
-|ROUGE_L|0.5317|
+|BLEU1|0.8420|
+|BLEU2|0.6986|
+|BLEU3|0.5546|
+|BLEU4|0.4336|
+|CIDEr|1.4163|
+|METEOR|0.2968|
+|ROUGE_L|0.6047|
 
-with beam_search(beam_search = 5) and self_critical_sequence_training
-|metric|score|
-|---|---|
-|BLEU1|0.7727|
-|BLEU2|0.6143|
-|BLEU3|0.4675|
-|BLEU4|0.3511|
-|CIDEr|1.024|
-|METEOR|0.2789|
-|ROUGE_L|0.5486|
-
-
-
-/
-
-
-special implementation
-|metric|score|
-|---|---|
-|BLEU1|0.8200|
-|BLEU2|0.6663|
-|BLEU3|0.5188|
-|BLEU4|0.3977|
-|CIDEr|1.3000|
-|METEOR|0.2847|
-|ROUGE_L|0.5843|
 
 
 
