@@ -140,7 +140,34 @@ where random labels are selected as random from five captions. This not only pre
 
 
 
-## evaluation for karpathy test: base_model_with_detection model
+
+## evaluation for karpathy test: base_model
+with beam_search(beam_search = 5) and self_critical_sequence_training and Ensemble(5 models)
+|metric|score|
+|---|---|
+|BLEU1|0.8305|
+|BLEU2|0.6816|
+|BLEU3|0.5361|
+|BLEU4|0.4158|
+|CIDEr|1.3453|
+|METEOR|0.2892|
+|ROUGE_L|0.5935|
+
+
+
+
+
+/
+
+
+
+
+
+## evaluation for karpathy test: base_model_with_detection model(2021.06.30)[ClipVinvlGpt]
+
+Originally, the goal of this project was to develop image captioning model with high performance at low cost. For additional research, I also used image detection features to produce better results, which resulted in 3rdPlace at COCO Image Caption Challenge in codaLab.
+
+
 with beam_search(beam_search = 5) and self_critical_sequence_training and Ensemble(3 models)
 |metric|score|
 |---|---|
@@ -151,6 +178,10 @@ with beam_search(beam_search = 5) and self_critical_sequence_training and Ensemb
 |CIDEr|1.4163|
 |METEOR|0.2968|
 |ROUGE_L|0.6047|
+
+this result is 3rdPlace AT Coco caption challenge on Codalab.
+
+
 
 
 
