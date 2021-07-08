@@ -62,8 +62,8 @@ I selected frequently used words from the coco annotation data and proceeded wit
 
 
 
-## encoder : resnet101
-I used resnet101 as an encoder. At the beginning of training, we did not include encoders (resnet) in trainable params, but later re-training by including encoders parameters for the trained capture models showed improved performance.(fine-tuned)
+## encoder : CLIP
+I used CLIP as an encoder. At the beginning of training, we did not include encoders (resnet) in trainable params, but later re-training by including encoders parameters for the trained capture models showed improved performance.(fine-tuned)
 
 
 
@@ -129,7 +129,7 @@ I tried to do a training process that creates arbitrary text and uses image to r
 where random labels are selected as random from five captions. This not only prevents overfitting but also improves performance in evaluations such as bleu and cider.
 
 
-* Here, I saw the performance improvement using only the fourth method. If all of the first, second, and third methods are used, performance improvement of 5-10 is expected based on bleu4.
+* Here, I saw the performance improvement using only the fourth method. If all of the first, second, and third methods are used, performance improvement of 4-5 is expected based on bleu4.
 
 
 
