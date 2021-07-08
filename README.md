@@ -166,7 +166,9 @@ with beam_search(beam_search = 5) and self_critical_sequence_training and Ensemb
 ## evaluation for karpathy test: base_model_with_detection model(2021.06.30)[ClipVinvlGpt]
 
 Originally, the goal of this project was to develop image captioning model with high performance at low cost. For additional research, I also used image detection features to produce better results, which resulted in 3rdPlace at COCO Image Caption Challenge in codaLab.
-![Generic badge](https://img.shields.io/badge/{COCO Image Caption}-{3rd}-{blue}.svg)
+
+[![Generic badge](https://img.shields.io/badge/<COCO Image caption Challenge>-<3rd>-<COLOR>.svg)](https://shields.io/)
+
 
 
 with beam_search(beam_search = 5) and self_critical_sequence_training and Ensemble(3 models)
