@@ -1,4 +1,4 @@
-# model : with clip
+# model : CLIPGPT
 
 '''
 
