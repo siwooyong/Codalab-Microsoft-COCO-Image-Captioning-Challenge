@@ -179,11 +179,10 @@ with beam_search(beam_search = 5) and self_critical_sequence_training and Ensemb
 |METEOR|0.2968|
 |ROUGE_L|0.6047|
 
+you can download the features from [VinVL: Revisiting Visual Representations in Vision-Language Models](https://github.com/pzzhang/VinVL) 
+
 # ***3rdPlace at COCO Image Caption Challenge***
 ![result](https://user-images.githubusercontent.com/68500343/124973025-ff088800-e065-11eb-8e95-b1c5a08a1c5f.png)
-
-
-you can download the features from [VinVL: Revisiting Visual Representations in Vision-Language Models](https://github.com/pzzhang/VinVL) 
 
 
 
