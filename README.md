@@ -17,7 +17,7 @@ I develpoed the simplest and better performance model.
 
 
 
-/
+
 
 
 
@@ -37,7 +37,7 @@ I used 118287 training data and 5000 valid data. Karpathy split data is availabl
 
 
 
-/
+
 
 
 
@@ -56,7 +56,7 @@ I selected frequently used words from the coco annotation data and proceeded wit
 
 
 
-/
+
 
 
 
@@ -70,7 +70,6 @@ I used CLIP as an encoder. At the beginning of training, we did not include enco
 
 
 
-/
 
 
 
@@ -85,7 +84,7 @@ I used CLIP as an encoder. At the beginning of training, we did not include enco
 
 
 
-/
+
 
 
 
@@ -109,7 +108,7 @@ model_input : '[dog] [bark]', 'INPUT_IDS', 'IMAGE'
 
 
 
-/
+
 
 
 
@@ -129,7 +128,7 @@ where random labels are selected as random from five captions. This not only pre
 
 
 
-/
+
 
 
 
@@ -151,7 +150,7 @@ with beam_search(beam_search = 5) and self_critical_sequence_training and Ensemb
 
 
 
-/
+
 
 
 
