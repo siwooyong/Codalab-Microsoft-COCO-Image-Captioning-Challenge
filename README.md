@@ -3,8 +3,8 @@
 
 
 
-## getting started
-This repo is based on many image capture models like 
+## Getting started
+This repository is based on many image capture models like 
  * [Show-and-Tell-A-Neural-Image-Caption-Generator](https://arxiv.org/pdf/1411.4555.pdf), 
  * [Show, Attend and Tell: Neural Image Caption Generation with Visual Attention](https://arxiv.org/pdf/1502.03044.pdf), 
  * [Bottom-Up and Top-Down Attention for Image Captioning and Visual QuestionAnswering](https://arxiv.org/pdf/1707.07998.pdf),
@@ -22,7 +22,7 @@ I develpoed the simplest and better performance model.
 
 
 
-## coco_dataset: data prepare(karpathy split)
+## Coco_dataset: data prepare(karpathy split)
 * The coco data consists of 80k train images, 40k valid images, and 40k test images. Here, I did not use test data, but trained on 80k images, and only did validation on 40k images.
 
 
@@ -43,14 +43,14 @@ I used 118287 training data and 5000 valid data. Karpathy split data is availabl
 
 
 
-## vocab
+## Vocab
 As a vocabulary for embeddedding. I tried using gpt2 (50,257 tokens) and Bert (30,232 tokens), but this required a relatively large amount of computation and was slow at learning, so I created vocab_dict separately.(See vocab.py for this.)
 
 I selected frequently used words from the coco annotation data and proceeded with encoding.(I selected 15,000 tokens.)
 
 
 
-** After a number of later studies, pretrained gpt2 embedding layer performed best.(check model.py)
+** After a number of later studies, I realized that pretrained gpt2 embedding layer performed better.(check model.py)
 
 
 
@@ -62,7 +62,7 @@ I selected frequently used words from the coco annotation data and proceeded wit
 
 
 
-## encoder : CLIP
+## Encoder : CLIP
 I used CLIP as an encoder. At the beginning of training, we did not include encoders (resnet) in trainable params, but later re-training by including encoders parameters for the trained capture models showed improved performance.(fine-tuned)
 
 
@@ -76,7 +76,7 @@ I used CLIP as an encoder. At the beginning of training, we did not include enco
 
 
 
-## decoder : gpt2 --> base_model.py
+## Decoder : gpt2 --> base_model.py
 * The decoder structure is the simplest structure, but I used one trick. The image input was separated into several tokens and put into the gpt2 hidden layer. This means that 1 image tokens, along with 20 word tokens (N, 21, 768) are input to gpt2.
 
 * Of course, there is no label for image token, so the loss function contains the latter 20 (N, 20, 768) of the (N, 21, 768).
@@ -92,8 +92,8 @@ I used CLIP as an encoder. At the beginning of training, we did not include enco
 
 
 
-## research 
-To achieve good performance, modern image capture models use image detection by default. However, this makes it difficult for users with poor gpu environment to implement.
+## Research 
+To achieve good performance, modern image captioning models use image detection by default. However, this makes it difficult for users with poor gpu environment to implement.
 Therefore, I made various attempts to obtain a good model with less gpu.
 
 1. tagging model
@@ -107,13 +107,6 @@ model_input : '[dog] [bark]', 'INPUT_IDS', 'IMAGE'
 
 
 
-2. another attempts
-I wanted to see the image caption task as text -> text, not image -> text
-I tried to do a training process that creates arbitrary text and uses image to refine it to the correct answer and is currently in progress.
-
-
-
-
 
 /
 
@@ -121,7 +114,7 @@ I tried to do a training process that creates arbitrary text and uses image to r
 
 
 
-## As a way to increase performance
+## Ways to increase performance
 * First, 'beam search'
 * Second, 'CIDEr optimization'
 * Third, 'Ensemble'
