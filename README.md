@@ -4,7 +4,7 @@
 
 
 ## Getting started
-This repository is based on many image capture models like 
+This repository is based on many image captioning models like 
  * [Show-and-Tell-A-Neural-Image-Caption-Generator](https://arxiv.org/pdf/1411.4555.pdf), 
  * [Show, Attend and Tell: Neural Image Caption Generation with Visual Attention](https://arxiv.org/pdf/1502.03044.pdf), 
  * [Bottom-Up and Top-Down Attention for Image Captioning and Visual QuestionAnswering](https://arxiv.org/pdf/1707.07998.pdf),
@@ -134,7 +134,7 @@ where random labels are selected as random from five captions. This not only pre
 
 
 
-## evaluation for karpathy test: models/base_model.py
+## Evaluation for karpathy test: models/base_model.py
 with beam_search(beam_search = 5) and self_critical_sequence_training and Ensemble(5 models)
 |metric|score|
 |---|---|
@@ -156,7 +156,7 @@ with beam_search(beam_search = 5) and self_critical_sequence_training and Ensemb
 
 
 
-## evaluation for karpathy test: models/base_model_with_detection.py
+## Evaluation for karpathy test: models/base_model_with_detection.py
 
 Originally, the goal of this project was to develop image captioning model with high performance at low cost. For additional research, I also used image detection features to produce better results. 
 
@@ -182,7 +182,7 @@ you can download the features from [VinVL: Revisiting Visual Representations in 
 
 
 
-## references
+## References
 I got help from [sgrvinod-a-PyTorch-Tutorial-to-Image-Captioning](https://github.com/sgrvinod/a-PyTorch-Tutorial-to-Image-Captioning).
 
 
