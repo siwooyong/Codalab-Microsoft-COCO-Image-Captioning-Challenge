@@ -105,6 +105,8 @@ I want to conduct another training on tag using various models such as cnn, lstm
 model_input : '[dog] [bark]', 'INPUT_IDS', 'IMAGE'
 (where <[dog] [bark]> corresponds to tag.)
 
+2..
+
 
 
 
